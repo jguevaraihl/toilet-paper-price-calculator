@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Precio por metro de papel higiénico</title>
-    <style>
-        /* Aquí puedes agregar tus estilos CSS */
-    </style>
+    <title>Calculadora de Precio de Papel Higiénico</title>
 </head>
 <body>
+    <h1>Calculadora de Precio de Papel Higiénico</h1>
+
     <form id="toiletPaperForm">
         <label for="brand">Marca de papel (opcional):</label><br>
         <input type="text" id="brand" name="brand"><br>
         <label for="price">Precio:</label><br>
-        <input type="number" id="price" name="price" required><br>
+        <input type="number" id="price" name="price" step="0.01" min="0" required><br>
         <label for="rolls">Cantidad de rollos:</label><br>
-        <input type="number" id="rolls" name="rolls" required><br>
+        <input type="number" id="rolls" name="rolls" step="1" min="1" required><br>
         <label for="meters">Metros por cada rollo:</label><br>
-        <input type="number" id="meters" name="meters" required><br>
+        <input type="number" id="meters" name="meters" step="0.01" min="0" required><br>
         <input type="submit" value="Calcular">
     </form>
-    <div id="result"></div>
+
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>Marca</th>
+                <th>Precio</th>
+                <th>Cantidad de Rollos</th>
+                <th>Metros por Rollo</th>
+                <th>Precio por Metro</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <button id="clearTable">Limpiar Tabla</button>
+
     <script src="script.js"></script>
 </body>
 </html>
-
-<table id="resultsTable">
-    <thead>
-        <tr>
-            <th>Marca</th>
-            <th>Precio</th>
-            <th>Cantidad de Rollos</th>
-            <th>Metros por Rollo</th>
-            <th>Precio por Metro</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
-
-<button id="clearTable">Limpiar Tabla</button>
-
