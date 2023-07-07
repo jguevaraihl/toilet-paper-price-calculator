@@ -10,6 +10,15 @@ document.getElementById('toiletPaperForm').addEventListener('submit', function(e
     // Calcula el precio por metro
     var pricePerMeter = (price / (rolls * meters)).toFixed(2);
 
-    // Muestra el resultado
-    document.getElementById('result').innerHTML = 'El precio por metro de ' + (brand ? brand : 'la marca ingresada') + ' es ' + pricePerMeter + '.';
+    // Crea una nueva fila para la tabla
+    var row = document.createElement('tr');
+    row.innerHTML = '<td>' + (brand ? brand : 'N/A') + '</td><td>' + price + '</td><td>' + rolls + '</td><td>' + meters + '</td><td>' + pricePerMeter + '</td>';
+
+    // Agrega la nueva fila a la tabla
+    document.getElementById('resultsTable').querySelector('tbody').appendChild(row);
+});
+
+document.getElementById('clearTable').addEventListener('click', function() {
+    // Borra todas las filas de la tabla
+    document.getElementById('resultsTable').querySelector('tbody').innerHTML = '';
 });
