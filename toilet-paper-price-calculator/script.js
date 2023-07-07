@@ -3,9 +3,9 @@ document.getElementById('toiletPaperForm').addEventListener('submit', function(e
 
     // Obtiene los valores del formulario
     var brand = document.getElementById('brand').value;
-    var price = document.getElementById('price').value;
-    var rolls = document.getElementById('rolls').value;
-    var meters = document.getElementById('meters').value;
+    var price = parseFloat(document.getElementById('price').value);
+    var rolls = parseFloat(document.getElementById('rolls').value);
+    var meters = parseFloat(document.getElementById('meters').value);
 
     // Calcula el precio por metro
     var pricePerMeter = (price / (rolls * meters)).toFixed(2);
