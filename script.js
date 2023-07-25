@@ -31,12 +31,15 @@ document.getElementById('toiletPaperForm').addEventListener('submit', function(e
     }
 });
 
-document.getElementById('clearTable').addEventListener('click', function() {
+document.getElementById('clearTable').addEventListener('click', function(event) {
     // Borra todas las filas de la tabla
     document.getElementById('resultsTable').querySelector('tbody').innerHTML = '';
     // Restablece el precio más bajo por metro y la fila correspondiente
     lowestPricePerMeter = Infinity;
     lowestPriceRow = null;
+    chart.data.labels.push(brand ? brand : 'N/A');
+    chart.data.datasets[0].ddata.push(pricePerMeter);
+    chart.update();
 });
 
 var ctx = document.getElementById('myChart').getContext('2d');
@@ -60,23 +63,4 @@ var chart = new Chart(ctx, {
         }
     }
 });
-
-document.getElementById('toiletPaperForm').addEventListener('submit', function(event) {
-    // El resto de tu código va aquí...
-
-    // Agrega la nueva marca y el precio por metro al gráfico
-    chart.data.labels.push(brand ? brand : 'N/A');
-    chart.data.datasets[0].data.push(pricePerMeter);
-    chart.update();
-});
-
-document.getElementById('clearTable').addEventListener('click', function() {
-    // El resto de tu código va aquí...
-
-    // Borra todos los datos del gráfico
-    chart.data.labels = [];
-    chart.data.datasets[0].data = [];
-    chart.update();
-});
-
 
