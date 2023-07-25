@@ -39,3 +39,44 @@ document.getElementById('clearTable').addEventListener('click', function() {
     lowestPriceRow = null;
 });
 
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Precio por Metro',
+            data: [],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+document.getElementById('toiletPaperForm').addEventListener('submit', function(event) {
+    // El resto de tu código va aquí...
+
+    // Agrega la nueva marca y el precio por metro al gráfico
+    chart.data.labels.push(brand ? brand : 'N/A');
+    chart.data.datasets[0].data.push(pricePerMeter);
+    chart.update();
+});
+
+document.getElementById('clearTable').addEventListener('click', function() {
+    // El resto de tu código va aquí...
+
+    // Borra todos los datos del gráfico
+    chart.data.labels = [];
+    chart.data.datasets[0].data = [];
+    chart.update();
+});
+
+
