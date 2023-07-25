@@ -1,6 +1,28 @@
 var lowestPricePerMeter = Infinity;
 var lowestPriceRow = null;
 
+var ctx = document.getElementById('myChart').getContext('2d');
+var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'Precio por Metro',
+            data: [],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
 document.getElementById('toiletPaperForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Evita que el formulario se envíe de la manera predeterminada
 
@@ -29,6 +51,11 @@ document.getElementById('toiletPaperForm').addEventListener('submit', function(e
         lowestPriceRow = row;
         row.style.backgroundColor = 'lightgreen'; // Cambia el color de la nueva fila más baja a verde
     }
+
+    // Agrega la nueva marca y el precio por metro al gráfico
+    chart.data.labels.push(brand ? brand : 'N/A');
+    chart.data.datasets[0].data.push(pricePerMeter);
+    chart.update();
 });
 
 document.getElementById('clearTable').addEventListener('click', function(event) {
@@ -37,30 +64,9 @@ document.getElementById('clearTable').addEventListener('click', function(event) 
     // Restablece el precio más bajo por metro y la fila correspondiente
     lowestPricePerMeter = Infinity;
     lowestPriceRow = null;
-    chart.data.labels.push(brand ? brand : 'N/A');
-    chart.data.datasets[0].ddata.push(pricePerMeter);
+
+    // Borra todos los datos del gráfico
+    chart.data.labels = [];
+    chart.data.datasets[0].data = [];
     chart.update();
 });
-
-var ctx = document.getElementById('myChart').getContext('2d');
-var chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Precio por Metro',
-            data: [],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-
